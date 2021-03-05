@@ -24,5 +24,16 @@
       </field>
     </record>
 
+    <record id="course_view_search" model="ir.ui.view">
+      <field name="name">openacademy.course.view.search</field>
+      <field name="model">openacademy.course</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="description" />
+        </search>
+      </field>
+    </record>
+
   </data>
 </odoo>
