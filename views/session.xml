@@ -65,11 +65,23 @@
       </field>
     </record>
 
+    <!-- graph view -->
+    <record id="session_view_graph" model="ir.ui.view">
+      <field name="name">openacademy.session.view.graph</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <graph string="Participations by Courses">
+          <field name="course_id" />
+          <field name="attendees_count" type="measure" />
+        </graph>
+      </field>
+    </record>
+
     <!-- action -->
     <record id="session_list_action" model="ir.actions.act_window">
       <field name="name">Sessions</field>
       <field name="res_model">openacademy.session</field>
-      <field name="view_mode">tree,form,calendar,gantt</field>
+      <field name="view_mode">tree,form,calendar,gantt,graph</field>
     </record>
 
     <!-- menuitem -->
