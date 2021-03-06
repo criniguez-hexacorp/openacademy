@@ -55,11 +55,21 @@
       </field>
     </record>
 
+    <!-- gantt view -->
+    <record id="session_view_gantt" model="ir.ui.view">
+      <field name="name">openacademy.session.view.gantt</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <gantt string="Session Gantt" date_start="start_date" date_stop="end_date">
+        </gantt>
+      </field>
+    </record>
+
     <!-- action -->
     <record id="session_list_action" model="ir.actions.act_window">
       <field name="name">Sessions</field>
       <field name="res_model">openacademy.session</field>
-      <field name="view_mode">tree,form,calendar</field>
+      <field name="view_mode">tree,form,calendar,gantt</field>
     </record>
 
     <!-- menuitem -->
