@@ -10,13 +10,33 @@
         <form string="Session Form">
           <sheet>
             <group>
-              <field name="name" />
-              <field name="start_date" />
-              <field name="duration" />
-              <field name="seats" />
+              <group string="General">
+                <field name="course_id" />
+                <field name="name" />
+                <field name="instructor_id" />
+              </group>
+              <group string="Schedule">
+                <field name="start_date" />
+                <field name="duration" />
+                <field name="seats" />
+              </group>
             </group>
+            <label for="attendee_ids" />
+            <field name="attendee_ids" />
           </sheet>
         </form>
+      </field>
+    </record>
+
+    <!-- tree view -->
+    <record id="session_view_tree" model="ir.ui.view">
+      <field name="name">openacademy.session.view.tree</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <tree string="Session tree">
+          <field name="name" />
+          <field name="course_id" />
+        </tree>
       </field>
     </record>
 
