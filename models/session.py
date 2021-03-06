@@ -1,3 +1,4 @@
+from datetime import timedelta
 from odoo import api, fields, models, exceptions
 
 
@@ -30,6 +31,12 @@ class Session(models.Model):
     )
 
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
+    end_date = fields.Date(
+        string="End Date",
+        store="True",
+        compute='_get_end_date',
+        inverse='_set_end_date'
+    )
 
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
@@ -38,6 +45,23 @@ class Session(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
+
+    @api.depends('start_date', 'duration')
+    def _get_end_date(self):
+        for r in self:
+            if not (r.start_date and r.duration):
+                r.end_date = r.start_date
+                continue
+
+            duration = timedelta(days=r.duration, seconds=-1)
+            r.end_date = r.start_date + duration
+
+    def _set_end_date(self):
+        for r in self:
+            if not (r.start_date and r.end_date):
+                continue
+
+            r.duration = (r.end_date - r.start_date).days + 1
 
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):

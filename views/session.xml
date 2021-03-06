@@ -44,11 +44,22 @@
       </field>
     </record>
 
+    <!-- calendar view -->
+    <record id="session_view_calendar" model="ir.ui.view">
+      <field name="name">openacademy.session.view.calendar</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <calendar string="Session Calendar" date_start="start_date" date_stop="end_date" color="instructor_id">
+          <field name="name" />
+        </calendar>
+      </field>
+    </record>
+
     <!-- action -->
     <record id="session_list_action" model="ir.actions.act_window">
       <field name="name">Sessions</field>
       <field name="res_model">openacademy.session</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar</field>
     </record>
 
     <!-- menuitem -->
