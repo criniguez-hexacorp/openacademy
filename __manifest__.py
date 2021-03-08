@@ -21,7 +21,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'board'],
 
     # always loaded
     'data': [
@@ -30,6 +30,7 @@
         'views/views.xml',
         'views/course.xml',
         'views/session.xml',
+        'views/session_board.xml',
         'views/partner.xml',
         'views/partner.category.xml',
         'views/templates.xml',

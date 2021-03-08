@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <data>
+
+    <record id="session_graph_action" model="ir.actions.act_window">
+      <field name="name">Attendees by course</field>
+      <field name="res_model">openacademy.session</field>
+      <field name="view_mode">graph</field>
+      <field name="view_id" ref="openacademy.session_view_graph"/>
+    </record>
+
+    <record id="session_calendar_action" model="ir.actions.act_window">
+      <field name="name">Sessions</field>
+      <field name="res_model">openacademy.session</field>
+      <field name="view_mode">calendar</field>
+      <field name="view_id" ref="openacademy.session_view_calendar"/>
+    </record>
+
+    <record id="course_list_action" model="ir.actions.act_window">
+      <field name="name">Courses</field>
+      <field name="res_model">openacademy.course</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="session_board_view_form" model="ir.ui.view">
+      <field name="name">Session Dashboard Form</field>
+      <field name="model">board.board</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Session Dashboard">
+          <board style="2-1">
+            <column>
+              <action string="Attendees by course" name="%(session_graph_action)d" height="150" width="510"/>
+              <action string="Courses" name="%(course_list_action)d"/>
+            </column>
+          </board>
+        </form>
+      </field>
+    </record>
+
+    <record id="open_board_session" model="ir.actions.act_window">
+      <field name="name">Session Dashboard</field>
+      <field name="res_model">board.board</field>
+      <field name="view_mode">form</field>
+      <field name="usage">manu</field>
+      <field name="view_id" ref="session_board_view_form"/>
+    </record>
+
+    <menuitem id="session_board_menu" name="Session Dashboard" action="open_board_session" parent="base.menu_reporting_dashboard" sequence="1"/>
+
+  </data>
+</odoo>
