@@ -1,5 +1,5 @@
 from datetime import timedelta
-from odoo import api, fields, models, exceptions
+from odoo import api, fields, models, exceptions, _
 
 
 class Session(models.Model):
@@ -79,15 +79,15 @@ class Session(models.Model):
         if self.seats < 0:
             return {
                 'warning': {
-                    'title': "Incorrect 'seats' value",
-                    'message': "The number of available seats may not be negative"
+                    'title': _("Incorrect 'seats' value"),
+                    'message': _("The number of available seats may not be negative")
                 }
             }
         if self.seats < len(self.attendee_ids):
             return {
                 'warning': {
-                    'title': "Too many attendees",
-                    'message': "Increase seats or remove excess attendees"
+                    'title': _("Too many attendees"),
+                    'message': _("Increase seats or remove excess attendees")
                 }
             }
 
@@ -96,5 +96,5 @@ class Session(models.Model):
         for r in self:
             if r.instructor_id and r.instructor_id in r.attendee_ids:
                 raise exceptions.ValidationError(
-                    "A session's instructor can't be an attendee"
+                    _("A session's instructor can't be an attendee")
                 )
